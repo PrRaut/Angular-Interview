@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <strong>Search City</strong>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="name">Branch Name</label>
+              <input type="text" required minlength="2" maxlength="20" [(ngModel)]="city" name="cityName"
+                #cityName="ngModel">
+              <div [hidden]="cityName.valid || cityName.pristine" class="alert alert-danger">
+                City Name is required
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary" (click)="searchCity()">Search</button>
+            <button type="submit" class="btn btn-primary" (click)="ResetCity()">Reset</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="col-sm-4" *ngIf="dataFound else dataNotFound">
+      <div class="form-group">
+        <label for="name">Weather Details</label>
+        <table class="table table-bordered ">
+          <thead>
+            <tr>
+              <th>Temperature </th>
+              <th>Humidity</th>
+              <th>Feels like</th>
+              <th>Temperature Min</th>
+              <th>Temperature Max</th>
+              <th> Pressure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{dataList.main.temp}}</td>
+              <td>{{dataList.main.humidity}}</td>
+              <td>{{dataList.main.feels_like}}</td>
+              <td>{{dataList.main.temp_min}}</td>
+              <td>{{dataList.main.temp_max}}</td>
+              <td>{{dataList.main.pressure}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #dataNotFound>Data Not Found</ng-template>
+  </div>
+</div>
